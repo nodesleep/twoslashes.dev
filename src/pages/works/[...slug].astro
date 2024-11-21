@@ -1,0 +1,52 @@
+---
+// @ts-nocheck
+import { getCollection } from "astro:content";
+import HeadLayout from "../../layouts/HeadLayout.astro";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("works");
+  const filteredEntries = entries.filter((entry) => !entry.data.draft);
+
+  return filteredEntries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+
+if (!entry) {
+  return Astro.redirect("/404");
+}
+const { Content } = await entry.render();
+
+const articleDate = () => {
+  return new Date(entry.data.pubDate).toLocaleDateString();
+};
+---
+
+<HeadLayout title={`// - ${entry.data.title}`}>
+  <table class="header">
+    <tr>
+      <td colspan="2" rowspan="2" class="width-auto">
+        <h1 class="title">{entry.data.title}</h1>
+        <span class="subtitle">{entry.data.description}</span>
+      </td>
+      <th>Date</th>
+      <td class="width-min"
+        ><time style="white-space: pre;">{articleDate}</time></td
+      >
+    </tr>
+    <tr>
+      <th>Category</th>
+      <td class="width-min">{entry.data.category}</td>
+    </tr>
+    <tr>
+      <th class="width-min">Author</th>
+      <td class="width-auto">{entry.data.author}</td>
+      <th class="width-min">License</th>
+      <td>CC BY-ND</td>
+    </tr>
+  </table>
+  <Content />
+</HeadLayout>

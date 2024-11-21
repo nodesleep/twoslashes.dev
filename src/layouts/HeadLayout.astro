@@ -1,0 +1,76 @@
+---
+import Navbar from "../components/Navbar.astro";
+
+const defaultTitle = "Twoslashes.dev - Thoughts, Essays, and Comments";
+const defaultDescription =
+  "A personal collection of musings, essays, and opinion pieces—where every thought starts with a comment.";
+
+const { title = defaultTitle, description = defaultDescription } = Astro.props;
+
+import "../styles/global.css";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta
+      name="keywords"
+      content="Twoslashes, essays, thoughts, personal blog, comments, writing"
+    />
+    <meta name="author" content="Aron Sweet" />
+
+    <!-- Title -->
+    <title>{title}</title>
+
+    <!-- Open Graph Meta Tags -->
+    <meta
+      property="og:title"
+      content="Twoslashes.dev - Thoughts, Essays, and Comments"
+    />
+    <meta
+      property="og:description"
+      content="Twoslashes.dev - A personal collection of musings, essays, and opinion pieces where every thought starts with a comment."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://twoslashes.dev" />
+    <meta property="og:image" content="https://twoslashes.dev/og-image.jpg" />
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Twoslashes.dev - Thoughts, Essays, and Comments"
+    />
+    <meta
+      name="twitter:description"
+      content="Twoslashes.dev - A personal collection of musings, essays, and opinion pieces where every thought starts with a comment."
+    />
+    <meta name="twitter:image" content="https://twoslashes.dev/og-image.jpg" />
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q4KE3S6R9L"
+    ></script>
+    <script>
+      // @ts-nocheck
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-Q4KE3S6R9L");
+    </script>
+  </head>
+  <body>
+    <Navbar />
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,99 @@
+---
+import { getCollection } from "astro:content";
+import HeadLayout from "../../layouts/HeadLayout.astro";
+
+interface Works {
+  id: string;
+  slug: string;
+  body: string;
+  collection: "works";
+  data: {
+    title: string;
+    pubDate: Date;
+    description?: string;
+    author?: string;
+    category: string;
+    image?: {
+      url: string;
+      alt: string;
+    };
+    tags?: string[];
+    draft?: boolean;
+  };
+}
+
+// Calculate reading time based on words per minute
+function calculateReadingTime(text: string, wordsPerMinute = 200): number {
+  const words = text.split(/\s+/).length;
+  return Math.ceil(words / wordsPerMinute);
+}
+// @ts-expect-error
+export async function getStaticPaths({ paginate }) {
+  const allPosts: Works[] = await getCollection("works");
+  const publishedPosts = allPosts.filter((post) => !post.data.draft);
+  const sortedPages = publishedPosts.sort(
+    (a: Works, b: Works) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
+  );
+
+  return paginate(sortedPages, { pageSize: 5 });
+}
+
+const { page }: any = Astro.props;
+
+const { prev, next } = page.url;
+const currentPage = page.currentPage;
+const totalPages = page.lastPage;
+---
+
+<HeadLayout title="// - Writings">
+  <div>
+    <p class="text-gray-400">
+      Subjects vary. Opinions are my own and are not endorsed or shared by my
+      employers or clients.
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th class="width-min"> Date </th>
+          <th class="width-auto"> Title </th>
+          <th class="width-min"> Length </th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          page.data.map((post: Works) => {
+            const pubDate = new Date(post.data.pubDate);
+            const month = pubDate.toLocaleString("default", { month: "short" });
+            const day = pubDate.getDate();
+            const year = pubDate.getFullYear();
+
+            const readingTime = calculateReadingTime(post.body); // Calculate reading time
+
+            return (
+              <tr>
+                <td>
+                  {month} {day}, {year}
+                </td>
+                <td>
+                  <a href={`/works/${post.slug}`}>
+                    <>
+                      <strong>{post.data.title}</strong>
+                      <br />
+                    </>
+                  </a>
+                  {post.data.description}
+                </td>
+                <td>{readingTime} min</td>
+              </tr>
+            );
+          })
+        }
+      </tbody>
+    </table>
+    <div class="flex items-center justify-center gap-4 mt-12">
+      Page {currentPage} of {totalPages}
+      <a href={prev}>Prev </a>
+      <a href={next}> Next </a>
+    </div>
+  </div>
+</HeadLayout>

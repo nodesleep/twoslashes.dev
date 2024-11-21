@@ -1,0 +1,33 @@
+---
+import Navbar from "../components/Navbar.astro";
+import "../styles/global.css";
+
+const route = Astro.request.url.toString();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>twoslashes | 404</title>
+  </head>
+  <body>
+    <Navbar />
+    <h1>404: Not Found</h1>
+    <p>
+      The page <strong>{route}</strong> doesn't appear to exist yet. The homepage
+      still exists for now, so feel free to return by clicking the button below or
+      the link at the top-left of the screen.
+    </p>
+
+    <p>
+      If you'd prefer just sitting here staring at a 404 page, that's fine too.
+    </p>
+    <p>
+      <a href="/">
+        <button>Go home</button>
+      </a>
+    </p>
+  </body>
+</html>

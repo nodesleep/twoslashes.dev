@@ -44,23 +44,27 @@ const posts = await fetchPosts();
 <div>
   <hr />
   <h2>Latest Works</h2>
-  <ul>
-    {
-      posts.map((post: Works) => {
-        // Use limitedPosts instead of page.data
-        const pubDate = new Date(post.data.pubDate);
+  {
+    posts.length > 0 ? (
+      <ul>
+        {posts.map((post: Works) => {
+          // Use limitedPosts instead of page.data
+          const pubDate = new Date(post.data.pubDate);
 
-        return (
-          <li>
-            <a
-              class="text-white hover:text-white bg-[#080808] border border-[#191919] hover:bg-neutral-900 p-5 rounded"
-              href={`/works/${post.slug}`}
-            >
-              {post.data.title}
-            </a>
-          </li>
-        );
-      })
-    }
-  </ul>
+          return (
+            <li>
+              <a
+                class="text-white hover:text-white bg-[#080808] border border-[#191919] hover:bg-neutral-900 p-5 rounded"
+                href={`/works/${post.slug}`}
+              >
+                {post.data.title}
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    ) : (
+      <p>There doesn't seem to be any works published yet.</p>
+    )
+  }
 </div>

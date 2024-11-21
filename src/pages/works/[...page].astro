@@ -52,48 +52,56 @@ const totalPages = page.lastPage;
       Subjects vary. Opinions are my own and are not endorsed or shared by my
       employers or clients.
     </p>
-    <table class="header">
-      <thead>
-        <tr>
-          <th class="width-min"> Date </th>
-          <th class="width-auto"> Title </th>
-          <th class="width-min"> Category </th>
-        </tr>
-      </thead>
-      <tbody>
-        {
-          page.data.map((post: Works) => {
-            const pubDate = new Date(post.data.pubDate);
-            const month = pubDate.toLocaleString("default", { month: "short" });
-            const day = pubDate.getDate();
-            const year = pubDate.getFullYear();
-
-            const readingTime = calculateReadingTime(post.body); // Calculate reading time
-
-            return (
+    {
+      page.data.length > 0 ? (
+        <div>
+          <table class="header">
+            <thead>
               <tr>
-                <td>
-                  {month} {day}, {year}
-                </td>
-                <td>
-                  <a href={`/works/${post.slug}`}>
-                    <strong>{post.data.title}</strong>
-                  </a>
-                  <p>
-                    <em>{readingTime} minute read</em>
-                  </p>
-                </td>
-                <td>{post.data.category}</td>
+                <th class="width-min"> Date </th>
+                <th class="width-auto"> Title </th>
+                <th class="width-min"> Category </th>
               </tr>
-            );
-          })
-        }
-      </tbody>
-    </table>
-    <div class="page-select">
-      Page {currentPage} of {totalPages}
-      {prev ? <a href={prev}>Prev </a> : " "}
-      {next ? <a href={next}>Next </a> : " "}
-    </div>
+            </thead>
+            <tbody>
+              {page.data.map((post: Works) => {
+                const pubDate = new Date(post.data.pubDate);
+                const month = pubDate.toLocaleString("default", {
+                  month: "short",
+                });
+                const day = pubDate.getDate();
+                const year = pubDate.getFullYear();
+
+                const readingTime = calculateReadingTime(post.body); // Calculate reading time
+
+                return (
+                  <tr>
+                    <td>
+                      {month} {day}, {year}
+                    </td>
+                    <td>
+                      <a href={`/works/${post.slug}`}>
+                        <strong>{post.data.title}</strong>
+                      </a>
+                      <p>
+                        <em>{readingTime} minute read</em>
+                      </p>
+                    </td>
+                    <td>{post.data.category}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+          <div class="page-select">
+            Page {currentPage} of {totalPages}
+            {prev ? <a href={prev}>Prev </a> : " "}
+            {next ? <a href={next}>Next </a> : " "}
+          </div>
+        </div>
+      ) : (
+        <p>There are no works to display yet. Please check back later.</p>
+      )
+    }
   </div>
 </HeadLayout>

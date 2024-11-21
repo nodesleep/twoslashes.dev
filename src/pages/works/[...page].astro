@@ -35,7 +35,7 @@ export async function getStaticPaths({ paginate }) {
     (a: Works, b: Works) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
   );
 
-  return paginate(sortedPages, { pageSize: 5 });
+  return paginate(sortedPages, { pageSize: 8 });
 }
 
 const { page }: any = Astro.props;
@@ -45,18 +45,19 @@ const currentPage = page.currentPage;
 const totalPages = page.lastPage;
 ---
 
-<HeadLayout title="Twoslashes | Writings">
+<HeadLayout title="twoslashes | Writings">
   <div>
+    <h2>Works</h2>
     <p class="text-gray-400">
       Subjects vary. Opinions are my own and are not endorsed or shared by my
       employers or clients.
     </p>
-    <table>
+    <table class="header">
       <thead>
         <tr>
           <th class="width-min"> Date </th>
           <th class="width-auto"> Title </th>
-          <th class="width-min"> Length </th>
+          <th class="width-min"> Category </th>
         </tr>
       </thead>
       <tbody>
@@ -76,24 +77,23 @@ const totalPages = page.lastPage;
                 </td>
                 <td>
                   <a href={`/works/${post.slug}`}>
-                    <>
-                      <strong>{post.data.title}</strong>
-                      <br />
-                    </>
+                    <strong>{post.data.title}</strong>
                   </a>
-                  {post.data.description}
+                  <p>
+                    <em>{readingTime} minute read</em>
+                  </p>
                 </td>
-                <td>{readingTime} min</td>
+                <td>{post.data.category}</td>
               </tr>
             );
           })
         }
       </tbody>
     </table>
-    <div class="flex items-center justify-center gap-4 mt-12">
+    <div class="page-select">
       Page {currentPage} of {totalPages}
-      <a href={prev}>Prev </a>
-      <a href={next}> Next </a>
+      {prev ? <a href={prev}>Prev </a> : " "}
+      {next ? <a href={next}>Next </a> : " "}
     </div>
   </div>
 </HeadLayout>

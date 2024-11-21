@@ -543,3 +543,12 @@ label input {
   text-decoration-thickness: var(--border-thickness);
   font-weight: bold;
 }
+
+.page-select,
+.page-select * {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 0;
+  gap: 1rem;
+}

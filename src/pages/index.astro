@@ -1,13 +1,13 @@
 ---
 import { Image } from "astro:assets";
-import HomeImage from "../assets/home_page_matte.webp";
+import HomeImage from "../assets/home_page_image.webp";
 import HeadLayout from "../layouts/HeadLayout.astro";
 import Latest from "../components/Latest.astro";
 
 const date = new Date();
 ---
 
-<HeadLayout title="Twoslashes | Home">
+<HeadLayout title="twoslashes | Home">
   <div>
     <table class="header">
       <tbody
@@ -27,24 +27,15 @@ const date = new Date();
             ><time style="white-space: pre;">2024-11-20</time></td
           >
         </tr>
-        <tr>
-          <th class="width-min">Author</th>
-          <td class="width-auto"
-            ><a href="https://www.aronsweet.com" target="_blank"
-              ><cite>nodesleep</cite></a
-            ></td
-          >
-          <th class="width-min">License</th>
-          <td>CC BY-ND</td>
-        </tr>
       </tbody>
     </table>
     <Image
       src={HomeImage}
       alt="A man walking alone"
       loading={"eager"}
-      height="500"
+      width="750"
     />
+    <h2>Welcome, wanderer.</h2>
     <p>
       If you're a software engineer, web developer, or a nerd all the same;
       you'll know that two slashes signify a comment in code. While a lot of my
@@ -64,14 +55,15 @@ const date = new Date();
       provide insight and facilitate understanding from a potentially differing
       viewpoint.
     </p>
-    <p>Welcome, wanderer.</p>
+    <p>
+      For the design nerds, this monospace theme wasn't my own creation, but a
+      creation of <a href="https://wickstrom.tech/" target="_blank"
+        >Oskar Wickström</a
+      > called <a
+        href="https://owickstrom.github.io/the-monospace-web/"
+        target="_blank">The Monospace Web</a
+      >
+    </p>
     <Latest />
-    <hr />
-    <div>
-      <p>
-        &copy; {date.getFullYear()} all rights reserved. Some content is provided
-        under the Creative Commons CC BY-ND (Attrbution, No Derivatives) license.
-      </p>
-    </div>
   </div>
 </HeadLayout>

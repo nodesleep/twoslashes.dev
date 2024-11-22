@@ -1,8 +1,6 @@
 ---
 import Navbar from "../components/Navbar.astro";
 import "../styles/global.css";
-
-const route = Astro.request.url.toString();
 ---
 
 <!doctype html>
@@ -14,15 +12,31 @@ const route = Astro.request.url.toString();
   </head>
   <body>
     <Navbar />
-    <h1>404: Not Found</h1>
+    <center>
+      <pre>
+  ██╗  ██╗ ██████╗ ██╗  ██╗
+  ██║  ██║██╔═████╗██║  ██║
+  ███████║██║██╔██║███████║
+  ╚════██║████╔╝██║╚════██║
+       ██║╚██████╔╝     ██║
+       ╚═╝ ╚═════╝      ╚═╝
+</pre>
+    </center>
+    <h3>Whoopsies!</h3>
     <p>
-      The page <strong>{route}</strong> doesn't appear to exist yet. The homepage
-      still exists for now, so feel free to return by clicking the button below or
-      the link at the top-left of the screen.
+      If this were a classic telephone, you'd hear the operator saying "<em
+        >the number you have dialed is not in service...
+      </em>"
+    </p>
+    <p>
+      The thing is, this page doesn't appear to exist yet. The homepage still
+      exists for now, so feel free to return by clicking the button below or the
+      link at the top-left of the screen.
     </p>
 
     <p>
       If you'd prefer just sitting here staring at a 404 page, that's fine too.
+      ASCII art always hits the spot, in my opinion.
     </p>
     <p>
       <a href="/">

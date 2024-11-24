@@ -1,0 +1,78 @@
+---
+title: Vue Over React
+description: The reasons why I prefer one framework over the other
+pubDate: 2024-11-24
+category: Dev
+author: Aron
+slug: vue-over-react
+draft: false
+---
+
+## Introduction
+
+**Preface: This is probably the most rudimentary explanation possible.**
+
+I can't help but get a little chafed by the overwhelming amount of React developers out there who are literally piling over each other like a clown car or a packed elevator; eventually bursting at the seams with someone who just learned what context providers are. If it's not that, it's the Next.js kids who drank the Vercel kool-aid hoping to be the next Senior FullStack dev at Meta.
+
+Frankly, it's annoying. Especially when, in my not-so-humble opinion, there's a better framework both for the new kid and the expert alike.
+
+So, here I am. Taking to the markdown file to word vomit my opinions on why I prefer Vue over React and maybe you will too.
+
+## Composition API
+
+Vue 3's Composition API is very straightforward. All of your logic can go into a
+setup script and Vue will happily execute the living shit out of it. The logic is nested at the top of the file (or bottom, if you're still living in the days of Vue 2 for some reason) and all of your imports and logic live within this tidy script.
+
+Small React applications can be tidy, but big projects get messy really quick. Especially in cases where the developers become overwhelmed and begin abstracting instead of separating concerns into components and utilites.
+
+## No Need For JSX
+
+You can just write plain ol' HTML in Vue. There's no return statements rendering out a functional component. You simply write the logic in your setup script, write your HTML, and Vue knows exactly what to do.
+
+If you're someone who has to bounce between Vue and React projects, having to write className vs. class is frustrating when you often forget or your linter likes to panic with yellow squiggly lines. This is more of a gripe than a reason. Obviously a good developer (which I never claimed to be, btw) would probably have less of an issue with this than anything else. I always see extra characters as a hinderance rather than a blessing, however.
+
+## React Is Not Reactive
+
+Vue has a little feature called "reactive data binding" which is built-in and straightforward. Declare a ref, set its state, and enjoy reactivity. React, on the other hand, requires hooks to manage state manually. useState, useEffect, and a variety of other hooks that are often misused and rarely understood by most React devs in my experience really hit performance hard once the application grows. -React requires more expertise to scale properly.
+
+## Flexibility Without Complexity
+
+Not only does Vue work great for small projects, it can scale to larger applications using Pinia for state management. Pinia is easy to use and so intuitive that I rarely ever have to consult the documentation. Vuex, if you're on a project still using it, is also fairly straightfoward.
+
+Redux sucks and any seasoned React dev will openly admit this to you.
+
+Zustand is a solid state management library for React, but it's sadly never used.
+
+## Vue Integrates Better
+
+You can use Vue partially, or in instances where you only need partial updates in an existing application. React demands a more complete overhaul in most cases to be effective.
+
+## Opinionated Yet Balanced
+
+Have you ever heard of decision paralysis? It's something that happens when you have a vast number of choices and not enough direction. The React ecosystem is full of it. Vue is opinionated and provides sensible defaults while also allowing for customization. This is such a relief; walking into a project knowing exactly what I'm going to be working with 9 times out of 10.
+
+## Smaller Bundle Size
+
+Vue has a much smaller bundle size which means faster loading times and better performance (not always, but in most cases).
+
+## Directives
+
+Vue directives like `v-bind` and `v-for` are intuitive and reduce the need for boilerplate code. React uses JSX, which is powerful, but also requires a lot more code written to accomplish the same tasks.
+
+For instance, I can iterate through an array and render the content by giving the parent element the `v-for` directive, whereas in React, I have to use the Array.map boilerplate.
+
+## Okay, I've Made My Point
+
+I'm not saying React is bad. No, not at all. React is an awesome framework. If you give someone enough time working with one or the other, they'll have a list of things they like about it and things they hate. That's not the issue.
+
+The issue is this; why, given all of the perks of Vue, is React so dominant in the market? The answer is marketing. It's because some impressionable person swore by React and their field of followers all started paroting the same tune. The industry heard the word "React" and ran with it; some keeping projects alive for more than a decade with the same old version.
+
+Long story short, it's everywhere.
+
+What incentive do developers have to learn an entirely new framework that has little say in the market? None.
+
+It's a damn shame that developers don't explore other frameworks. If they did, they might see the same things I see in Vue and think, "Hmm, this project might be better suited with Vue's reactivity" or "Hey, we could write much cleaner code using the setup script than just writing functional components."
+
+But I digress. While React is a great framework that will not be going away anytime soon, I still will continue to choose Vue over React for the reasons stated above.
+
+Thank you for reading.

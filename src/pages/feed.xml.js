@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 
 export async function GET(context) {
   const works = await getCollection("works");
+  works.sort((a, b) => new Date(b.data.pubDate) - new Date(a.data.pubDate));
   return rss({
     title: "twoslashes",
     description: "A collection of articles, essays, opinions, & more",

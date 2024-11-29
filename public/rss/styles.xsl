@@ -245,7 +245,8 @@
             <table class="header">
             <tr>
               <td colspan="2" rowspan="2" class="width-auto">
-                <h1 class="title"><xsl:value-of select="title" /></h1>
+                <h1 class="title">
+                <a href="{link}"><xsl:value-of select="title" /></a></h1>
                 <span class="subtitle"><xsl:value-of select="description" /></span>
               </td>
               <th>Date</th>

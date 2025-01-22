@@ -30,7 +30,9 @@ function calculateReadingTime(text: string, wordsPerMinute = 200): number {
 // @ts-expect-error
 export async function getStaticPaths({ paginate }) {
   const allPosts: Works[] = await getCollection("works");
-  const publishedPosts = allPosts.filter((post) => !post.data.draft);
+  const publishedPosts = allPosts.filter(
+    (post) => !post.data.draft && post.body,
+  );
   const sortedPages = publishedPosts.sort(
     (a: Works, b: Works) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
   );

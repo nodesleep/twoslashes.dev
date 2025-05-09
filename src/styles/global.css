@@ -1,7 +1,9 @@
 @import url("https://fonts.cdnfonts.com/css/jetbrains-mono-2");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 
 :root {
   --font-family: "JetBrains Mono", monospace;
+  --font-family-heading: "Bebas Neue", sans-serif;
   --line-height: 1.2rem;
   --border-thickness: 2px;
   --text-color: #000;
@@ -88,14 +90,21 @@ h6 {
   line-height: var(--line-height);
 }
 
+h1,
+h2 {
+  font-family: var(--font-family-heading);
+  letter-spacing: 0.05ch;
+}
+
 h1 {
-  font-size: 2rem;
-  line-height: calc(2 * var(--line-height));
+  font-size: 3rem;
+  line-height: calc(2.5 * var(--line-height));
   margin-bottom: calc(var(--line-height) * 2);
   text-transform: uppercase;
 }
 h2 {
-  font-size: 1rem;
+  font-size: 2rem;
+  line-height: calc(1.5 * var(--line-height));
   text-transform: uppercase;
 }
 
@@ -324,6 +333,7 @@ textarea {
   line-height: normal;
   -webkit-font-smoothing: inherit;
   -moz-osx-font-smoothing: inherit;
+  appearance: none;
   -webkit-appearance: none;
 }
 
